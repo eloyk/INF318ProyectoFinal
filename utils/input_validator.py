@@ -1,70 +1,64 @@
 from typing import List
 
 class InputValidator:
-    """Utility class for input validation."""
     
     @staticmethod
     def validate_grade(grade: str) -> float:
-        """Validate and convert grade input."""
         if not grade.strip():
-            raise ValueError("Grade cannot be empty")
+            raise ValueError("La calificacion del mes no puede estar vacio")
             
         try:
             grade_float = float(grade)
             
-            # Check if grade has more than 2 decimal places
             if len(str(grade_float).split('.')[-1]) > 2:
-                raise ValueError("Grade can have at most 2 decimal places")
+                raise ValueError("La calificacion del mes no puede tener mas de 2 decimales")
                 
             if 0 <= grade_float <= 100:
                 return round(grade_float, 2)
-            raise ValueError("Grade must be between 0 and 100")
+            raise ValueError("La calificacion debe estar entre 0 y 100")
         except ValueError as e:
-            if str(e) == "could not convert string to float":
-                raise ValueError("Grade must be a valid number")
+            if str(e) == "No se pudo convertir a numerico el valor ingresado":
+                raise ValueError("La calificacion debe ser un numero valido")
             raise e
 
     @staticmethod
     def validate_name(name: str) -> str:
-        """Validate name input."""
         if not name.strip():
-            raise ValueError("Name cannot be empty")
+            raise ValueError("El nombre no puede estar vacio")
             
         cleaned_name = name.strip()
         if not cleaned_name.replace(" ", "").isalpha():
-            raise ValueError("Name must contain only letters and spaces")
+            raise ValueError("El nombre debe contener solo letras y espacios")
             
         return cleaned_name
 
     @staticmethod
     def get_validated_grades() -> List[float]:
-        """Get and validate all grades for a student."""
         grades = []
         required_grades = 4
         
-        print("\nEnter grades for each month (0-100):")
+        print("\nIngrese las calificaciones para cada mes entre (0-100):")
         for month in range(1, required_grades + 1):
             while True:
                 try:
-                    grade_input = input(f"Month {month} grade: ").strip()
+                    grade_input = input(f"Mes {month} calificacion: ").strip()
                     grade = InputValidator.validate_grade(grade_input)
                     grades.append(grade)
                     break
                 except ValueError as e:
-                    print(f"Error: {e}. Please try again.")
+                    print(f"Error: {e}. Por favor intente nuevamente.")
         
         if len(grades) != required_grades:
-            raise ValueError(f"Exactly {required_grades} grades are required")
+            raise ValueError(f"Exactamente {required_grades} calificaciones son requeridas")
             
         return grades
 
     @staticmethod
     def confirm_action(prompt: str) -> bool:
-        """Validate user confirmation for important actions."""
         while True:
             response = input(f"{prompt} (y/n): ").strip().lower()
             if response == 'y':
                 return True
             elif response == 'n':
                 return False
-            print("Please enter 'y' for yes or 'n' for no.")
+            print("Por favor ingrese 'y' para si o 'n' para no.")

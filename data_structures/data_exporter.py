@@ -5,19 +5,15 @@ from typing import List
 from models.student import Student
 
 class DataExporter:
-    """Handles exporting student data to different formats."""
     
     @staticmethod
     def export_to_csv(students: List[Student], filename: str = "data/students.csv") -> None:
-        """Export student data to CSV format."""
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         
         with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
-            # Write header
-            writer.writerow(['Last Name', 'First Name', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Average'])
+            writer.writerow(['Apellidos', 'Nombres', 'Nota Mes 1', 'Nota Mes 2', 'Nota Mes 3', 'Nota Mes 4', 'Promedio'])
             
-            # Write student data
             for student in students:
                 row = [student.last_name, student.first_name]
                 row.extend(student.grades)
@@ -26,16 +22,15 @@ class DataExporter:
 
     @staticmethod
     def export_to_json(students: List[Student], filename: str = "data/students.json") -> None:
-        """Export student data to JSON format."""
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         
         data = []
         for student in students:
             student_data = {
-                'lastName': student.last_name,
-                'firstName': student.first_name,
-                'grades': {f'month{i+1}': grade for i, grade in enumerate(student.grades)},
-                'average': student.average
+                'apellidos': student.last_name,
+                'nombres': student.first_name,
+                'calificaciones': {f'notaMes{i+1}': grade for i, grade in enumerate(student.grades)},
+                'promedio': student.average
             }
             data.append(student_data)
             

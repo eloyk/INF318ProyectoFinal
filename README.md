@@ -33,16 +33,16 @@ El sistema ofrece las siguientes opciones:
 ### Funcionalidades Principales
 
 #### 1. Agregar Estudiante
-- Ingrese apellido y nombre
+- Ingrese apellidos y nombres
 - Ingrese 4 calificaciones mensuales (0-100)
 - El sistema calcula automáticamente el promedio
 
 #### 2. Eliminar Estudiante
-- Busque por apellido y nombre
+- Busque por apellidos y nombres
 - Confirme la eliminación
 
 #### 3. Actualizar Calificaciones
-- Busque el estudiante por apellido y nombre
+- Busque el estudiante por apellidos y nombres
 - Ingrese las nuevas calificaciones
 - El promedio se actualiza automáticamente
 
@@ -52,8 +52,8 @@ El sistema ofrece las siguientes opciones:
 
 #### 5. Ordenar Estudiantes
 Opciones de ordenamiento:
-- Por apellido (A-Z)
-- Por apellido (Z-A)
+- Por apellidos (A-Z)
+- Por apellidos (Z-A)
 - Por promedio (Mayor a menor)
 - Por promedio (Menor a mayor)
 
@@ -96,21 +96,21 @@ Formatos disponibles:
 
 ### CSV
 ```csv
-Apellido,Nombre,Mes1,Mes2,Mes3,Mes4,Promedio
+Apellidos,Nombres,Nota Mes 1,Nota Mes 2,Nota Mes 3,Nota Mes 4,Promedio
 ```
 
 ### JSON
 ```json
 {
-  "lastName": "Apellido",
-  "firstName": "Nombre",
-  "grades": {
-    "month1": 85.5,
-    "month2": 90.0,
-    "month3": 88.5,
-    "month4": 92.0
+  "apellidos": "Apellido",
+  "nombres": "Nombre",
+  "calificaciones": {
+    "notaMes1": 85.5,
+    "notaMes2": 90.0,
+    "notaMes3": 88.5,
+    "notaMes4": 92.0
   },
-  "average": 89.0
+  "promedio": 89.0
 }
 ```
 
@@ -119,16 +119,16 @@ Apellido,Nombre,Mes1,Mes2,Mes3,Mes4,Promedio
 <students>
   <student>
     <name>
-      <lastName>Apellido</lastName>
-      <firstName>Nombre</firstName>
+      <apellidos>Apellido</apellidos>
+      <nombres>Nombre</nombres>
     </name>
-    <grades>
-      <month1>85.5</month1>
-      <month2>90.0</month2>
-      <month3>88.5</month3>
-      <month4>92.0</month4>
-    </grades>
-    <average>89.0</average>
+    <calificaciones>
+      <notaMes1>85.5</notaMes1>
+      <notaMes2>90.0</notaMes2>
+      <notaMes3>88.5</notaMes3>
+      <notaMes4>92.0</notaMes4>
+    </calificaciones>
+    <promedio>89.0</promedio>
   </student>
 </students>
 ```
